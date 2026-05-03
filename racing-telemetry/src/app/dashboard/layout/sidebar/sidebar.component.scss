@@ -1,0 +1,235 @@
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-bright);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+
+  &__sys-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.5rem;
+    color: var(--text-faint);
+    padding: 8px 14px 0;
+    letter-spacing: 0.04em;
+  }
+
+  &__section {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__section-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  &__driver-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--text-muted);
+  }
+
+  &__divider {
+    height: 1px;
+    background: var(--border-bright);
+    margin: 0 14px;
+  }
+
+  &__toggles { display: flex; flex-direction: column; gap: 5px; }
+
+  &__footer {
+    margin-top: auto;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border-top: 1px solid var(--border-bright);
+  }
+}
+
+// ── Session select ────────────────────────────────────────
+.session-select {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  padding: 6px 10px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &:focus { border-color: var(--accent); }
+  option  { background: var(--bg-elevated); color: var(--text-primary); }
+}
+
+// ── Driver search ─────────────────────────────────────────
+.driver-search {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  padding: 5px 10px;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &::placeholder { color: var(--text-muted); }
+  &:focus { border-color: var(--accent); }
+}
+
+// ── Driver grid (compact chips) ───────────────────────────
+.driver-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+}
+
+.driver-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 4px 5px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+
+  &:hover {
+    background: var(--bg-hover);
+    border-color: var(--team-color, var(--accent));
+  }
+
+  &--selected {
+    background: var(--accent-glow);
+    border-color: var(--team-color, var(--accent));
+    border-width: 1.5px;
+  }
+
+  &__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--team-color, var(--text-muted));
+    flex-shrink: 0;
+  }
+
+  &__code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+}
+
+// ── Selected driver detail card ───────────────────────────
+.driver-detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-top: 2px;
+
+  &__bar {
+    width: 3px;
+    height: 28px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__team {
+    font-size: 0.58rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+}
+
+// ── Panel toggles ─────────────────────────────────────────
+.toggle-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    appearance: none;
+    width: 13px;
+    height: 13px;
+    border: 1px solid var(--border-bright);
+    border-radius: 3px;
+    background: var(--bg-elevated);
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: background 0.15s, border-color 0.15s;
+
+    &:checked {
+      background: var(--accent);
+      border-color: var(--accent);
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 3px; top: 1px;
+        width: 4px; height: 7px;
+        border: 1.5px solid #fff;
+        border-top: none; border-left: none;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  &__label { font-size: 0.65rem; color: var(--text-secondary); }
+}

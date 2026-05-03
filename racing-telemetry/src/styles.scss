@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// ── Design tokens — Dark (default) ───────────────────────
+:root {
+  // Palette
+  --black:         #000000;
+  --crimson:       #8B0025;
+  --rose:          #BF2052;
+  --steel:         #6D7680;
+  --offwhite:      #F3F9FB;
+
+  // Semantic mappings
+  --bg-base:       #000000;
+  --bg-surface:    #0d0a0b;
+  --bg-elevated:   #160d10;
+  --bg-hover:      #1f1015;
+
+  --accent:        #BF2052;
+  --accent-deep:   #8B0025;
+  --accent-glow:   rgba(191, 32, 82, 0.18);
+  --accent-subtle: rgba(191, 32, 82, 0.08);
+
+  --positive:      #4caf7d;
+  --positive-bg:   rgba(76, 175, 125, 0.1);
+  --negative:      #e05252;
+  --negative-bg:   rgba(224, 82, 82, 0.1);
+  --warning:       #d4a017;
+  --warning-bg:    rgba(212, 160, 23, 0.1);
+
+  --text-primary:  #F3F9FB;
+  --text-secondary:#b8c4cc;
+  --text-muted:    #6D7680;
+  --text-faint:    #2a1e22;
+
+  --border:        #1e1215;
+  --border-bright: #2e1e24;
+
+  --shadow-sm:     0 1px 4px rgba(0, 0, 0, 0.6);
+  --shadow-md:     0 4px 20px rgba(0, 0, 0, 0.7);
+
+  // Car SVG tokens
+  --car-body:      #2a1520;
+  --car-surface:   #3d1e28;
+  --car-stroke:    #5a2e3a;
+  --car-tyre:      #1a0d10;
+  --car-bar-track: #3d1e28;
+  --car-wing:      #3d1e28;
+  --car-cockpit:   #1a0d10;
+}
+
+// ── Design tokens — Light ─────────────────────────────────
+[data-theme="light"] {
+  --bg-base:       #F3F9FB;
+  --bg-surface:    #ffffff;
+  --bg-elevated:   #f0e8ec;
+  --bg-hover:      #e8d8df;
+
+  --accent:        #BF2052;
+  --accent-deep:   #8B0025;
+  --accent-glow:   rgba(191, 32, 82, 0.12);
+  --accent-subtle: rgba(191, 32, 82, 0.06);
+
+  --positive:      #2e7d52;
+  --positive-bg:   rgba(46, 125, 82, 0.1);
+  --negative:      #c0392b;
+  --negative-bg:   rgba(192, 57, 43, 0.1);
+  --warning:       #a0720a;
+  --warning-bg:    rgba(160, 114, 10, 0.1);
+
+  --text-primary:  #1a0a10;
+  --text-secondary:#3d2030;
+  --text-muted:    #6D7680;
+  --text-faint:    #d0c0c8;
+
+  --border:        #e0cdd4;
+  --border-bright: #d0b8c2;
+
+  --shadow-sm:     0 1px 4px rgba(139, 0, 37, 0.08);
+  --shadow-md:     0 4px 20px rgba(139, 0, 37, 0.12);
+
+  // Car SVG tokens
+  --car-body:      #d4b0bc;
+  --car-surface:   #e8ccd4;
+  --car-stroke:    #8B0025;
+  --car-tyre:      #2a1520;
+  --car-bar-track: #e0c8d0;
+  --car-wing:      #c09aaa;
+  --car-cockpit:   #f0e0e8;
+}
+
+// ── Base resets ───────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+// ── Scrollbar ─────────────────────────────────────────────
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: var(--bg-base); }
+::-webkit-scrollbar-thumb  { background: var(--border-bright); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+// ── Value flash ───────────────────────────────────────────
+@keyframes valueFlash {
+  0%   { color: var(--accent); }
+  100% { color: inherit; }
+}
+.value-flash { animation: valueFlash 0.4s ease-out forwards; }
+
+canvas { display: block; }

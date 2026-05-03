@@ -1,0 +1,86 @@
+<div class="shell">
+  <div class="sys-string sys-string--tl">// SESSION_ID: {{ panels().timingTower ? 'ACTIVE' : 'STANDBY' }}</div>
+  <div class="sys-string sys-string--tr">// DATA_STREAM: CONNECTED</div>
+
+  <app-header />
+
+  <div class="shell__body">
+    <app-sidebar
+      [selectedDriver]="selectedDriver()"
+      [panels]="panels()"
+      (driverSelected)="onDriverSelected($event)"
+      (panelsChanged)="onPanelsChanged($event)"
+    />
+
+    <main class="main-grid" role="main">
+
+      @if (panels().timingTower) {
+        <div class="grid-cell grid-cell--full">
+          <app-timing-tower
+            [selectedDriver]="selectedDriver()"
+            (driverSelected)="onDriverSelected($event)"
+          />
+        </div>
+      }
+
+      @if (panels().lapBreakdown || panels().sectorMap) {
+        <div class="grid-cell grid-cell--half">
+          @if (panels().lapBreakdown) {
+            <app-lap-breakdown [selectedDriver]="selectedDriver()" />
+          }
+        </div>
+        <div class="grid-cell grid-cell--half">
+          @if (panels().sectorMap) {
+            <app-sector-map [selectedDriver]="selectedDriver()" />
+          }
+        </div>
+      }
+
+      @if (panels().lapEvolution || panels().telemetryAnalysis) {
+        <div class="grid-cell grid-cell--half">
+          @if (panels().lapEvolution) {
+            <app-lap-evolution [selectedDriver]="selectedDriver()" />
+          }
+        </div>
+        <div class="grid-cell grid-cell--half">
+          @if (panels().telemetryAnalysis) {
+            <app-telemetry-analysis [selectedDriver]="selectedDriver()" />
+          }
+        </div>
+      }
+
+      @if (panels().speedTrace || panels().pedalTrace) {
+        <div class="grid-cell grid-cell--half">
+          @if (panels().speedTrace) {
+            <app-speed-trace [selectedDriver]="selectedDriver()" />
+          }
+        </div>
+        <div class="grid-cell grid-cell--half">
+          @if (panels().pedalTrace) {
+            <app-pedal-trace [selectedDriver]="selectedDriver()" />
+          }
+        </div>
+      }
+
+      @if (panels().tyreStrategy) {
+        <div class="grid-cell grid-cell--full">
+          <app-tyre-strategy />
+        </div>
+      }
+
+      @if (panels().gapChart || panels().carDiagnostics) {
+        <div class="grid-cell grid-cell--half">
+          @if (panels().gapChart) {
+            <app-gap-chart />
+          }
+        </div>
+        <div class="grid-cell grid-cell--half">
+          @if (panels().carDiagnostics) {
+            <app-car-diagnostics [selectedDriver]="selectedDriver()" />
+          }
+        </div>
+      }
+
+    </main>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<aside class="sidebar">
+  <div class="sidebar__sys-text">// DRIVER_SELECT</div>
+
+  <!-- Session selector -->
+  <div class="sidebar__section">
+    <span class="sidebar__section-label">Session</span>
+    <select
+      class="session-select"
+      [ngModel]="activeSessionId"
+      (ngModelChange)="onSessionChange($event)"
+    >
+      @for (session of sessions; track session.id) {
+        <option [value]="session.id">{{ session.label }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="sidebar__divider"></div>
+
+  <!-- Driver grid -->
+  <div class="sidebar__section">
+    <div class="sidebar__section-header">
+      <span class="sidebar__section-label">Drivers</span>
+      <span class="sidebar__driver-count">{{ filteredDrivers.length }}/{{ drivers.length }}</span>
+    </div>
+
+    <!-- Search -->
+    <input
+      class="driver-search"
+      type="text"
+      placeholder="Search…"
+      [(ngModel)]="driverFilter"
+      (ngModelChange)="onFilterChange()"
+    />
+
+    <!-- Compact grid -->
+    <div class="driver-grid">
+      @for (driver of filteredDrivers; track driver.driverCode) {
+        <button
+          class="driver-chip"
+          [class.driver-chip--selected]="selectedDriver === driver.driverCode"
+          [style.--team-color]="driver.teamColor"
+          [title]="driver.fullName + ' — ' + driver.team"
+          (click)="selectDriver(driver.driverCode)"
+        >
+          <span class="driver-chip__dot"></span>
+          <span class="driver-chip__code">{{ driver.driverCode }}</span>
+        </button>
+      }
+    </div>
+
+    <!-- Selected driver detail -->
+    @if (selectedDriverObj) {
+      <div class="driver-detail">
+        <span class="driver-detail__bar" [style.background]="selectedDriverObj.teamColor"></span>
+        <div class="driver-detail__info">
+          <span class="driver-detail__name">{{ selectedDriverObj.fullName }}</span>
+          <span class="driver-detail__team">{{ selectedDriverObj.team }}</span>
+        </div>
+        <span class="driver-detail__num">#{{ selectedDriverObj.carNumber }}</span>
+      </div>
+    }
+  </div>
+
+  <div class="sidebar__divider"></div>
+
+  <!-- Panel toggles -->
+  <div class="sidebar__section">
+    <span class="sidebar__section-label">Panels</span>
+    <div class="sidebar__toggles">
+      @for (panel of panelKeys; track panel.key) {
+        <label class="toggle-item">
+          <input
+            type="checkbox"
+            [checked]="panels[panel.key]"
+            (change)="togglePanel(panel.key)"
+          />
+          <span class="toggle-item__label">{{ panel.label }}</span>
+        </label>
+      }
+    </div>
+  </div>
+
+  <div class="sidebar__footer">
+    <div class="sidebar__sys-text">// TELEMETRY_FEED: ACTIVE</div>
+    <div class="sidebar__sys-text">// LAT_RATE: 20Hz</div>
+    <div class="sidebar__sys-text">// DATA_STREAM: CONNECTED</div>
+  </div>
+</aside>

@@ -1,0 +1,44 @@
+.stat-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-bright);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  transition: border-color 0.2s;
+
+  &--highlight { border-color: var(--accent); background: var(--accent-subtle); }
+
+  &__label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  &__value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+}
+
+.delta-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  display: inline-block;
+  align-self: flex-start;
+
+  &--green  { color: var(--positive); background: var(--positive-bg); }
+  &--red    { color: var(--negative); background: var(--negative-bg); }
+  &--yellow { color: var(--warning);  background: var(--warning-bg); }
+  &--neutral{ color: var(--text-muted); background: var(--bg-elevated); }
+}

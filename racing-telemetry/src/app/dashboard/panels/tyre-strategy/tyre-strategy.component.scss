@@ -1,0 +1,113 @@
+:host { display: contents; }
+
+.strategy-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0 8px;
+  // Contain pit markers within the panel body
+  overflow: hidden;
+}
+
+.axis-row { display: flex; align-items: center; gap: 8px; }
+.axis-label { width: 36px; flex-shrink: 0; }
+
+.axis-ticks {
+  flex: 1;
+  position: relative;
+  height: 16px;
+  min-width: 0;
+}
+
+.axis-tick {
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.strategy-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+
+  &__label {
+    width: 36px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  &__bar {
+    flex: 1;
+    min-width: 0;
+    height: 22px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-bright);
+    border-radius: 4px;
+    position: relative;
+    // Clip stints to bar width — no horizontal overflow
+    overflow: hidden;
+  }
+}
+
+.stint-block {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+  overflow: hidden;
+  opacity: 0.9;
+
+  &__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    flex-shrink: 0;
+  }
+
+  &__laps {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.52rem;
+    color: rgba(255,255,255,0.6);
+  }
+}
+
+// Pit markers sit inside the bar (overflow: hidden clips them at edges)
+.pit-marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 100%;
+    background: rgba(255,255,255,0.6);
+  }
+
+  &__label {
+    font-size: 0.44rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.7);
+    line-height: 1;
+    margin-bottom: 1px;
+  }
+}

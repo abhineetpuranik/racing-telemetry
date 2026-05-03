@@ -1,0 +1,41 @@
+<app-panel [label]="panelLabel">
+  <div class="strategy-wrap">
+    <!-- Lap axis -->
+    <div class="axis-row">
+      <div class="axis-label"></div>
+      <div class="axis-ticks">
+        @for (tick of axisTicks; track tick) {
+          <span class="axis-tick" [style.left.%]="((tick - 1) / (totalLaps - 1)) * 100">{{ tick }}</span>
+        }
+      </div>
+    </div>
+
+    <!-- Driver rows -->
+    @for (driver of drivers; track driver.driverCode) {
+      <div class="strategy-row">
+        <div class="strategy-row__label">{{ driver.driverCode }}</div>
+        <div class="strategy-row__bar">
+          @for (stint of getStints(driver.driverCode); track (stint.driverCode + '_' + stint.startLap)) {
+            <div
+              class="stint-block"
+              [style.left.%]="((stint.startLap - 1) / totalLaps) * 100"
+              [style.width.%]="((stint.endLap - stint.startLap + 1) / totalLaps) * 100"
+              [style.background]="getCompoundColor(stint.compound)"
+              [title]="stint.compound + ' — Laps ' + stint.startLap + '–' + stint.endLap"
+            >
+              <span class="stint-block__label">{{ stint.compound[0] }}</span>
+              @if ((stint.endLap - stint.startLap) > 4) {
+                <span class="stint-block__laps">{{ stint.endLap - stint.startLap + 1 }}L</span>
+              }
+            </div>
+          }
+          @for (pit of getPitLaps(driver.driverCode); track pit) {
+            <div class="pit-marker" [style.left.%]="((pit - 1) / totalLaps) * 100">
+              <span class="pit-marker__label">PIT</span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</app-panel>

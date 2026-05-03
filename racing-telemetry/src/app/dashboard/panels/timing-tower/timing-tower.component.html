@@ -1,0 +1,49 @@
+<app-panel label="Live Timing Tower" [isActive]="true">
+  <div class="timing-table-wrap">
+    <table class="timing-table">
+      <thead>
+        <tr>
+          <th>POS</th>
+          <th>DRIVER</th>
+          <th>GAP</th>
+          <th>INTERVAL</th>
+          <th>LAST LAP</th>
+          <th>S1</th>
+          <th>S2</th>
+          <th>S3</th>
+          <th>TYRE</th>
+          <th>AGE</th>
+          <th>PITS</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of standings; track row.driverCode) {
+          <tr
+            class="timing-row"
+            [class.timing-row--selected]="selectedDriver === row.driverCode"
+            [class.timing-row--session-best]="row.isSessionBest"
+            [class.timing-row--personal-best]="row.isPersonalBest && !row.isSessionBest"
+            (click)="selectDriver(row.driverCode)"
+          >
+            <td class="col-pos">{{ row.position }}</td>
+            <td class="col-driver">
+              <span class="driver-bar" [style.background]="getTeamColor(row.driverCode)"></span>
+              <span class="driver-code">{{ row.driverCode }}</span>
+            </td>
+            <td class="col-gap" [appValueFlash]="row.gap">{{ row.gap }}</td>
+            <td class="col-interval" [appValueFlash]="row.interval">{{ row.interval }}</td>
+            <td class="col-lap" [appValueFlash]="row.lastLap">{{ formatMs(row.lastLap) }}</td>
+            <td class="col-sector">{{ formatSector(row.sector1) }}</td>
+            <td class="col-sector">{{ formatSector(row.sector2) }}</td>
+            <td class="col-sector">{{ formatSector(row.sector3) }}</td>
+            <td class="col-tyre">
+              <app-tyre-badge [compound]="row.compound" />
+            </td>
+            <td class="col-age">{{ row.tyreAge }}</td>
+            <td class="col-pits">{{ row.pitCount }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</app-panel>

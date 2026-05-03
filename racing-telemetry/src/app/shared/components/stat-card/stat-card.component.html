@@ -1,0 +1,7 @@
+<div class="stat-card" [class.stat-card--highlight]="highlight">
+  <span class="stat-card__label">{{ label }}</span>
+  <span class="stat-card__value" [appValueFlash]="value">{{ value }}</span>
+  @if (delta !== null && delta !== undefined) {
+    <span class="delta-chip" [ngClass]="deltaColorClass">{{ deltaFormatted }}</span>
+  }
+</div>

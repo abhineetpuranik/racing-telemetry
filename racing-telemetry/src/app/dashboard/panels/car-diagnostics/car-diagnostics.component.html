@@ -1,0 +1,174 @@
+<app-panel label="Car Diagnostics">
+  @if (diag) {
+    <div class="diag-layout">
+
+      <!-- F1 car top-down silhouette -->
+      <div class="car-schematic">
+        <svg viewBox="0 0 160 420" class="car-svg" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <style>
+              .c-wing    { fill: var(--car-wing);   stroke: var(--car-stroke); stroke-width: 1.2; }
+              .c-body    { fill: var(--car-body);   stroke: var(--car-stroke); stroke-width: 1; }
+              .c-cockpit { fill: var(--car-cockpit);stroke: var(--car-stroke); stroke-width: 1; }
+              .c-tyre    { fill: var(--car-tyre);   stroke: var(--car-stroke); stroke-width: 1; }
+              .c-halo    { fill: none; stroke: var(--car-stroke); stroke-width: 2; }
+              .c-bar-bg  { fill: var(--car-bar-track); rx: 2; }
+            </style>
+          </defs>
+
+          <!-- ── Front wing ── -->
+          <!-- main plane — wide, flat, prominent -->
+          <rect x="4" y="22" width="152" height="9" rx="3" class="c-wing"/>
+          <!-- front wing endplates -->
+          <rect x="4"   y="16" width="7" height="21" rx="2" class="c-wing"/>
+          <rect x="149" y="16" width="7" height="21" rx="2" class="c-wing"/>
+          <!-- secondary flap -->
+          <rect x="10" y="14" width="140" height="6" rx="2" class="c-wing" opacity="0.7"/>
+
+          <!-- ── Nose cone ── -->
+          <path d="M62 22 Q80 18 98 22 L96 52 Q80 48 64 52 Z" class="c-body"/>
+
+          <!-- ── Front suspension arms ── -->
+          <line x1="64" y1="62" x2="34" y2="72" stroke="var(--car-stroke)" stroke-width="1.5"/>
+          <line x1="96" y1="62" x2="126" y2="72" stroke="var(--car-stroke)" stroke-width="1.5"/>
+
+          <!-- ── Front tyres ── -->
+          <rect x="14" y="62" width="28" height="44" rx="8" class="c-tyre"/>
+          <rect x="118" y="62" width="28" height="44" rx="8" class="c-tyre"/>
+          <!-- tyre rim highlight -->
+          <rect x="20" y="68" width="16" height="32" rx="5" fill="var(--car-body)" opacity="0.4"/>
+          <rect x="124" y="68" width="16" height="32" rx="5" fill="var(--car-body)" opacity="0.4"/>
+
+          <!-- ── Main chassis / sidepods ── -->
+          <!-- left sidepod -->
+          <path d="M28 90 Q22 95 20 115 L20 195 Q22 210 32 215 L58 218 L58 90 Z" class="c-body"/>
+          <!-- right sidepod -->
+          <path d="M132 90 Q138 95 140 115 L140 195 Q138 210 128 215 L102 218 L102 90 Z" class="c-body"/>
+          <!-- central chassis -->
+          <rect x="54" y="52" width="52" height="200" rx="10" class="c-cockpit"/>
+
+          <!-- ── Halo ── -->
+          <path d="M62 130 Q80 118 98 130" class="c-halo"/>
+          <rect x="77" y="118" width="6" height="20" rx="2" class="c-halo" style="fill:var(--car-stroke);stroke:none"/>
+
+          <!-- ── ERS bar (inside cockpit) ── -->
+          <rect x="66" y="158" width="28" height="5" rx="2" class="c-bar-bg"/>
+          <rect x="66" y="158" [attr.width]="28 * (diag.ersDeployment / 100)" height="5" rx="2" fill="var(--accent)"/>
+          <!-- MGU-K bar -->
+          <rect x="66" y="167" width="28" height="5" rx="2" class="c-bar-bg"/>
+          <rect x="66" y="167" [attr.width]="28 * (diag.mguKRecovery / 100)" height="5" rx="2" fill="var(--positive)"/>
+
+          <!-- ── Rear suspension arms ── -->
+          <line x1="58" y1="248" x2="30" y2="262" stroke="var(--car-stroke)" stroke-width="1.5"/>
+          <line x1="102" y1="248" x2="130" y2="262" stroke="var(--car-stroke)" stroke-width="1.5"/>
+
+          <!-- ── Rear tyres ── -->
+          <rect x="10" y="258" width="34" height="56" rx="9" class="c-tyre"/>
+          <rect x="116" y="258" width="34" height="56" rx="9" class="c-tyre"/>
+          <!-- tyre rim highlight -->
+          <rect x="16" y="265" width="22" height="42" rx="6" fill="var(--car-body)" opacity="0.4"/>
+          <rect x="122" y="265" width="22" height="42" rx="6" fill="var(--car-body)" opacity="0.4"/>
+
+          <!-- ── Rear diffuser ── -->
+          <path d="M52 248 Q80 244 108 248 L110 268 Q80 264 50 268 Z" class="c-body"/>
+
+          <!-- ── Rear wing ── -->
+          <!-- main plane — wide -->
+          <rect x="4"   y="368" width="152" height="9" rx="3" class="c-wing"/>
+          <!-- rear wing endplates -->
+          <rect x="4"   y="360" width="7" height="26" rx="2" class="c-wing"/>
+          <rect x="149" y="360" width="7" height="26" rx="2" class="c-wing"/>
+          <!-- DRS flap -->
+          <rect x="12" y="380" width="136" height="6" rx="2" class="c-wing" opacity="0.7"/>
+
+          <!-- ── Bar labels ── -->
+          <text x="62" y="156" font-family="Inter,sans-serif" font-size="5" fill="var(--car-stroke)" font-weight="600" letter-spacing="0.5">ERS</text>
+          <text x="62" y="165" font-family="Inter,sans-serif" font-size="5" fill="var(--car-stroke)" font-weight="600" letter-spacing="0.5">MGU</text>
+        </svg>
+      </div>
+
+      <!-- Data callouts -->
+      <div class="callouts">
+        <div class="callout-group">
+          <span class="callout-group__title">FRONT WING</span>
+          <div class="callout-row">
+            <div class="callout">
+              <span class="callout__label">FL</span>
+              <span class="callout__value">{{ diag.frontWingLeft }}%</span>
+            </div>
+            <div class="callout">
+              <span class="callout__label">FR</span>
+              <span class="callout__value">{{ diag.frontWingRight }}%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-group">
+          <span class="callout-group__title">REAR WING</span>
+          <div class="callout-row">
+            <div class="callout">
+              <span class="callout__label">RL</span>
+              <span class="callout__value">{{ diag.rearWingLeft }}%</span>
+            </div>
+            <div class="callout">
+              <span class="callout__label">RR</span>
+              <span class="callout__value">{{ diag.rearWingRight }}%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-group">
+          <span class="callout-group__title">FRONT BRAKES</span>
+          <div class="callout-row">
+            <div class="callout">
+              <span class="callout__label">FL</span>
+              <span class="callout__value" [style.color]="brakeColor(diag.frontBrakeTempLeft)">
+                {{ diag.frontBrakeTempLeft }}°
+              </span>
+            </div>
+            <div class="callout">
+              <span class="callout__label">FR</span>
+              <span class="callout__value" [style.color]="brakeColor(diag.frontBrakeTempRight)">
+                {{ diag.frontBrakeTempRight }}°
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-group">
+          <span class="callout-group__title">REAR BRAKES</span>
+          <div class="callout-row">
+            <div class="callout">
+              <span class="callout__label">RL</span>
+              <span class="callout__value" [style.color]="brakeColor(diag.rearBrakeTempLeft)">
+                {{ diag.rearBrakeTempLeft }}°
+              </span>
+            </div>
+            <div class="callout">
+              <span class="callout__label">RR</span>
+              <span class="callout__value" [style.color]="brakeColor(diag.rearBrakeTempRight)">
+                {{ diag.rearBrakeTempRight }}°
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-group callout-group--full">
+          <span class="callout-group__title">POWER UNIT</span>
+          <div class="callout-row">
+            <div class="callout">
+              <span class="callout__label">ERS DEPLOY</span>
+              <span class="callout__value callout__value--yellow">{{ diag.ersDeployment }}%</span>
+            </div>
+            <div class="callout">
+              <span class="callout__label">MGU-K REC</span>
+              <span class="callout__value callout__value--green">{{ diag.mguKRecovery }}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="no-data">No diagnostic data</div>
+  }
+</app-panel>

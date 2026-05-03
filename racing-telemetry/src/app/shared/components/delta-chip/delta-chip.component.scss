@@ -1,0 +1,13 @@
+.delta-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  display: inline-block;
+
+  &--green  { color: var(--positive); background: var(--positive-bg); }
+  &--red    { color: var(--negative); background: var(--negative-bg); }
+  &--yellow { color: var(--warning);  background: var(--warning-bg); }
+  &--neutral{ color: var(--text-muted); background: var(--bg-elevated); }
+}

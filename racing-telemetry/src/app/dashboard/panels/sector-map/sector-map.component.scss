@@ -1,0 +1,12 @@
+:host { display: contents; }
+
+.sector-map { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.circuit-svg { width: 100%; max-width: 280px; height: auto; }
+
+.corner-label { font-family: 'Inter', sans-serif; font-size: 7px; fill: var(--text-muted); font-weight: 600; }
+.sector-time-label { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700; }
+
+.legend { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-dot { width: 7px; height: 7px; border-radius: 50%; }
+.legend-label { font-size: 0.58rem; color: var(--text-muted); }

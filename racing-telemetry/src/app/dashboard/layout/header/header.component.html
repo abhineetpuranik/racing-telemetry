@@ -1,0 +1,78 @@
+<header class="header">
+  <div class="header__left">
+    <span class="header__circuit-code">{{ session?.circuitCode }}</span>
+    <div class="header__circuit-info">
+      <span class="header__circuit-name">{{ session?.circuit }}</span>
+      <span class="header__session-badge">{{ session?.sessionName }}</span>
+    </div>
+  </div>
+
+  <div class="header__center">
+    <span class="header__lap-label">LAP</span>
+    <span class="header__lap-num">{{ session?.currentLap }}</span>
+    <span class="header__lap-sep">/</span>
+    <span class="header__lap-total">{{ session?.totalLaps }}</span>
+  </div>
+
+  <div class="header__right">
+    <span class="header__conditions" [ngClass]="conditionsClass">
+      {{ session?.conditions }}
+    </span>
+    <span class="header__time">{{ currentTime }}</span>
+
+    <!-- Theme toggle -->
+    <button
+      class="theme-toggle"
+      [class.theme-toggle--light]="theme.theme() === 'light'"
+      (click)="theme.toggle()"
+      [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+      title="{{ theme.theme() === 'dark' ? 'Light mode' : 'Dark mode' }}"
+    >
+      @if (theme.theme() === 'dark') {
+        <!-- Sun icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      } @else {
+        <!-- Moon icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      }
+    </button>
+
+    <button
+      class="header__live-btn"
+      [class.header__live-btn--active]="svc.isLive()"
+      (click)="svc.toggleLive()"
+    >
+      <span class="live-dot" [class.live-dot--active]="svc.isLive()"></span>
+      {{ svc.isLive() ? 'LIVE' : 'PAUSED' }}
+    </button>
+
+    <button
+      class="header__restart-btn"
+      (click)="svc.restartSession()"
+      title="Restart session from lap 1"
+    >
+      <!-- Restart icon -->
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="1 4 1 10 7 10"/>
+        <path d="M3.51 15a9 9 0 1 0 .49-4.5"/>
+      </svg>
+      RESTART
+    </button>
+
+    @if (svc.sessionComplete()) {
+      <span class="header__complete">SESSION COMPLETE</span>
+    }
+  </div>
+</header>

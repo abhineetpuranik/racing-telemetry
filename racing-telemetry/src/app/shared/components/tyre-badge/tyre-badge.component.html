@@ -1,0 +1,8 @@
+<span class="tyre-badge">
+  <span class="tyre-badge__dot" [style.background]="config.color">
+    {{ config.letter }}
+  </span>
+  @if (age !== null && age !== undefined) {
+    <span class="tyre-badge__age">{{ age }}</span>
+  }
+</span>

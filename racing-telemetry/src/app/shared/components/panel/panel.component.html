@@ -1,0 +1,9 @@
+<div class="panel" [class.panel--active]="isActive">
+  <div class="panel__header">
+    <span class="panel__label">{{ label }}</span>
+    <ng-content select="[panel-actions]" />
+  </div>
+  <div class="panel__body">
+    <ng-content />
+  </div>
+</div>

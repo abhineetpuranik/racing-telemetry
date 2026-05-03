@@ -1,0 +1,25 @@
+<app-panel label="Lap Telemetry vs Average">
+  <div panel-actions>
+    <div class="legend">
+      <span class="legend-item">
+        <span class="legend-dot" [style.background]="driverColor"></span>
+        {{ selectedDriver }} — Selected Lap
+      </span>
+      <span class="legend-item">
+        <span class="legend-dot legend-dot--avg"></span>
+        Average
+      </span>
+    </div>
+  </div>
+
+  <div class="chart-stack">
+    <div class="chart-label">SPEED (km/h)</div>
+    <div class="chart-wrap">
+      <canvas #speedCanvas></canvas>
+    </div>
+    <div class="chart-label chart-label--delta">DELTA vs AVG (km/h)</div>
+    <div class="chart-wrap chart-wrap--delta">
+      <canvas #deltaCanvas></canvas>
+    </div>
+  </div>
+</app-panel>

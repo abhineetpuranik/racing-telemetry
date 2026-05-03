@@ -1,0 +1,26 @@
+.tyre-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  &__dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+
+  &__age {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+}

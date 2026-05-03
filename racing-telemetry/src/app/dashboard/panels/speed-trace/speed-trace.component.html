@@ -1,0 +1,20 @@
+<app-panel label="Speed Trace">
+  <div panel-actions class="actions">
+    <select class="ctrl-select" [(ngModel)]="compareDriver" (ngModelChange)="onCompareDriverChange()">
+      <option value="">Compare driver…</option>
+      @for (code of allDriverCodes; track code) {
+        @if (code !== selectedDriver) {
+          <option [value]="code">vs {{ code }}</option>
+        }
+      }
+    </select>
+    <select class="ctrl-select" [(ngModel)]="selectedLap" (ngModelChange)="onLapChange()">
+      @for (lap of lapOptions; track lap) {
+        <option [value]="lap">LAP {{ lap }}</option>
+      }
+    </select>
+  </div>
+  <div class="chart-wrap">
+    <canvas #speedCanvas></canvas>
+  </div>
+</app-panel>

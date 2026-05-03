@@ -1,0 +1,47 @@
+<app-panel label="Lap Time Breakdown" [isActive]="!!currentLap?.isPersonalBest">
+  <div panel-actions>
+    @if (currentLap) {
+      <app-tyre-badge [compound]="currentLap.compound" [age]="currentLap.tyreAge" />
+    }
+  </div>
+
+  <div class="sectors">
+    @if (currentLap) {
+      <app-stat-card
+        label="Sector 1"
+        [value]="formatSector(currentLap.sector1)"
+        [delta]="s1Delta"
+        [highlight]="s1Delta !== null && s1Delta < 0"
+      />
+      <app-stat-card
+        label="Sector 2"
+        [value]="formatSector(currentLap.sector2)"
+        [delta]="s2Delta"
+        [highlight]="s2Delta !== null && s2Delta < 0"
+      />
+      <app-stat-card
+        label="Sector 3"
+        [value]="formatSector(currentLap.sector3)"
+        [delta]="s3Delta"
+        [highlight]="s3Delta !== null && s3Delta < 0"
+      />
+    } @else {
+      <div class="no-data">No lap data</div>
+    }
+  </div>
+
+  @if (currentLap) {
+    <div class="lap-total" [class.lap-total--pb]="currentLap.isPersonalBest">
+      <span class="lap-total__label">LAP TIME</span>
+      <span class="lap-total__time">{{ formatMs(currentLap.lapTime) }}</span>
+      @if (lapDelta !== null) {
+        <app-delta-chip [delta]="lapDelta" />
+      }
+      @if (currentLap.isSessionBest) {
+        <span class="badge badge--sb">SESSION BEST</span>
+      } @else if (currentLap.isPersonalBest) {
+        <span class="badge badge--pb">PERSONAL BEST</span>
+      }
+    </div>
+  }
+</app-panel>

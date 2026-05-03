@@ -1,0 +1,30 @@
+[
+  {
+    "id": "2023_MZA_Q",
+    "label": "Monza 2023 \u2014 Qualifying",
+    "circuitCode": "MZA",
+    "sessionName": "QUALIFYING",
+    "year": 2023
+  },
+  {
+    "id": "2023_MZA_R",
+    "label": "Monza 2023 \u2014 Race",
+    "circuitCode": "MZA",
+    "sessionName": "RACE",
+    "year": 2023
+  },
+  {
+    "id": "2023_MON_Q",
+    "label": "Monaco 2023 \u2014 Qualifying",
+    "circuitCode": "MON",
+    "sessionName": "QUALIFYING",
+    "year": 2023
+  },
+  {
+    "id": "2023_MON_R",
+    "label": "Monaco 2023 \u2014 Race",
+    "circuitCode": "MON",
+    "sessionName": "RACE",
+    "year": 2023
+  }
+]

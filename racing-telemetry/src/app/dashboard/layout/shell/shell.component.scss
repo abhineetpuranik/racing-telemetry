@@ -1,0 +1,51 @@
+.shell {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+  overflow: hidden;
+  position: relative;
+}
+
+.sys-string {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.5rem;
+  color: var(--text-faint);
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  letter-spacing: 0.04em;
+
+  &--tl { top: 56px; left: 228px; }
+  &--tr { top: 56px; right: 16px; }
+}
+
+.shell__body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.main-grid {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: min-content;
+  gap: 12px;
+  align-content: start;
+  background: var(--bg-base);
+}
+
+.grid-cell {
+  min-height: 0;
+  &--full { grid-column: 1 / -1; }
+  &--half { grid-column: span 1; }
+}
+
+@media (max-width: 960px) {
+  .grid-cell--half { grid-column: 1 / -1; }
+}
